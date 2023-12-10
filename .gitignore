@@ -1,0 +1,6 @@
+#IDEA
+# idea ignore
+.idea/
+*.ipr
+*.iml
+*.iws
