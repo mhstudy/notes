@@ -1,233 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no, viewport-fit=cover">
-
-    <!-- Replace with your own title and description. -->
-    <title>mh-Notes</title>
-    <meta name="description" content="An awesome docsify site for publishing some content on the web.">
-
-    <!-- Default Theme (see https://docsify.js.org/#/themes) -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
-
-    <!-- 谷歌站点收录 -->
-    <meta name="google-site-verification" content="qTFCf1hJ275saQ7H1kin5t2DVpznBKAj0Gi50XMOVMo"/>
-    <!-- 百度站点收录 -->
-    <meta name="baidu-site-verification" content="SZyWUIzWiU"/>
-
-    <link rel="stylesheet" href="https://notebook.js.org/plugin/css/vue-1.css">
-    <!-- 支持 LaTex 语言 -->
-    <link rel="stylesheet" href="https://notebook.js.org/plugin/css/katex.min.css"/>
-    <link rel="stylesheet" href="https://wugenqiang.js.org/src/css/iconfont.css">
-    <link rel="stylesheet" href="https://notebook.js.org/plugin/custom.css">
-    <!-- alert -->
-    <link rel="stylesheet" href="https://notebook.js.org/plugin/sweetalert.min.css" type='text/css' media='all'/>
-    <!-- 友链 -->
-    <link rel="stylesheet" href="https://notebook.js.org/plugin/css/friends-link.css">
-    <!-- 自定义特色样式：by myself -->
-    <link rel="stylesheet" href="https://notebook.js.org/plugin/css/me.css">
-
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <!-- 设置浏览器兼容性 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <!-- 网页描述 -->
+  <meta name="description" content="学习笔记">
+  <!-- 设置视口 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <!-- 引入样式表 -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
 </head>
-
 <body>
-<div id="app"></div>
-
-<script>
-    // Docsify Configuration (see https://docsify.js.org/#/configuration)
+  <!-- 页面内容 -->
+  <div id="app"><p>🔫🌹🍄....</p></div>
+  <!-- 配置Docsify -->
+  <script>
     window.$docsify = {
-        name: '<p学习记录</p>',
-        nameLink: '<p>mh-Notes</p>',
-        repo: 'https://github.com/mh-Notes',
-        themeColor: '#007be8', // 主题颜色
-        //loadSidebar: true,//_sidebar.md如果为真，则从_sidebar.md文件加载边栏，否则从指定的路径加载
-        auto2top: true,  //当路线改变时,滚动到屏幕的顶部
-        loadNavbar: true,//_navbar.md如果为真，则从_navbar.md文件加载navbar ，否则从指定的路径加载
-        mergeNavbar: true,//Navbar将在小屏幕上与侧边栏合并
-        executeScript: true,//执行页面上的脚本。只解析第一个脚本标记（演示）。如果存在Vue，则默认开
-        maxLevel: 6,//最大的内容表级别
-        //subMaxLevel: 6,//在自定义边栏中添加目录（TOC)
-        externalLinkTarget: '_blank', //外链打开方式：_blank表示在新标签页中打开
-        coverpage: true,
-        onlyCover: true,
-        topMargin: 60,//调整top
-        //executeScript: true,//执行页面上的脚本，仅解析第一个脚本标签
-        search: {
-            paths: 'auto',
-            placeholder: '🔍 搜索',
-            noData: '😒 找不到结果',
-            // Headline depth, 1 - 6
-            depth: 6,
-            maxAge: 86400000, // 过期时间，单位毫秒，默认一天
-        },//添加搜索框
-
-        markdown: {
-            renderer: {
-                code: function (code, lang, base = null) {
-
-                    if (lang === "dot") {
-                        return (
-                            '<div class="viz">' + Viz(code, "SVG") + '</div>'
-                        );
-                    }
-
-                    var pdf_renderer = function (code, lang, verify) {
-                        function unique_id_generator() {
-                            function rand_gen() {
-                                return Math.floor((Math.random() + 1) * 65536).toString(16).substring(1);
-                            }
-
-                            return rand_gen() + rand_gen() + '-' + rand_gen() + '-' + rand_gen() + '-' + rand_gen() + '-' + rand_gen() + rand_gen() + rand_gen();
-                        }
-
-                        if (lang && !lang.localeCompare('pdf', 'en', {sensitivity: 'base'})) {
-                            if (verify) {
-                                return true;
-                            } else {
-                                var divId = "markdown_code_pdf_container_" + unique_id_generator().toString();
-                                var container_list = new Array();
-                                if (localStorage.getItem('pdf_container_list')) {
-                                    container_list = JSON.parse(localStorage.getItem('pdf_container_list'));
-                                }
-                                container_list.push({"pdf_location": code, "div_id": divId});
-                                localStorage.setItem('pdf_container_list', JSON.stringify(container_list));
-                                return (
-                                    '<div style="margin-top:' + PDF_MARGIN_TOP + '; margin-bottom:' + PDF_MARGIN_BOTTOM + ';" id="' + divId + '">'
-                                    + '<a href="' + code + '"> Link </a> to ' + code +
-                                    '</div>'
-                                );
-                            }
-                        }
-                        return false;
-                    }
-                    if (pdf_renderer(code, lang, true)) {
-                        return pdf_renderer(code, lang, false);
-                    }
-                    //return this.origin.code.apply(this, arguments);
-                    return (base ? base : this.origin.code.apply(this, arguments));
-                }
-            }
-        },
-    };
-
-    <script src="https://notebook.js.org/plugin/js/docsify.min.js"></script>
-<script src="https://notebook.js.org/plugin/search.min.js"></script>
-<script src="https://notebook.js.org/plugin/zoom-image.min.js"></script>
-
-<!-- 支持 DOT 语言 -->
-<script src="https://notebook.js.org/plugin/viz.js"></script>
-<!-- 支持 LaTex 语言 -->
-<script src="https://notebook.js.org/plugin/js/docsify-katex.js"></script>
-
-<!-- 添加 PDF 页面展示功能 -->
-<!-- PDFObject.js is a required dependency of this plugin -->
-<!--<script src="//cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js"></script>-->
-<script src="https://notebook.js.org/plugin/pdfobject.min.js"></script>
-<!-- This is the source code of the pdf embed plugin -->
-<script src="https://notebook.js.org/plugin/docsify-pdf-embed.js"></script>
-
-<!-- 复制代码-->
-<script src="https://notebook.js.org/plugin/docsify-copy-code.min.js"></script>
-
-<!-- 回到顶部功能 -->
-<script src="https://notebook.js.org/plugin/jquery.js"></script>
-<script src="https://notebook.js.org/plugin/jquery.goup.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $.goup({
-            trigger: 100,
-            bottomOffset: 52,
-            locationOffset: 25,
-            //title: 'TOP',
-            titleAsText: true
-        });
-    });
-</script>
-
-<!-- 代码块样式优化-->
-<script src="https://notebook.js.org/plugin/prism-c.js"></script>
-<!--<script src="//unpkg.com/prismjs/components/prism-cpp.js"></script>-->
-<script src="https://notebook.js.org/plugin/prism-cpp.js"></script>
-<script src="https://notebook.js.org/plugin/prism-css.js"></script>
-<script src="https://notebook.js.org/plugin/prism-docker.js"></script>
-<script src="https://notebook.js.org/plugin/prism-java.js"></script>
-<script src="https://notebook.js.org/plugin/prism-javascript.js"></script>
-<script src="https://notebook.js.org/plugin/prism-json.js"></script>
-<script src="https://notebook.js.org/plugin/prism-latex.js"></script>
-<script src="https://notebook.js.org/plugin/prism-sql.js"></script>
-<script src="https://notebook.js.org/plugin/prism-markdown.js"></script>
-<script src="https://notebook.js.org/plugin/prism-bash.min.js"></script>
-<script src="https://notebook.js.org/plugin/prism-php.min.js"></script>
-<script src="https://notebook.js.org/plugin/prism-scala.min.js"></script>
-<script src="https://notebook.js.org/plugin/prism-nginx.min.js"></script>
-<script src="https://notebook.js.org/plugin/prism-json.min.js"></script>
-<script src="https://notebook.js.org/plugin/prism-markdown.min.js"></script>
-<script src="https://notebook.js.org/plugin/prism-python.js"></script>
-<script src="https://notebook.js.org/plugin/js/prism-yaml.js"></script>
-<script src="https://notebook.js.org/plugin/js/prism-go.js"></script>
-<script src="https://notebook.js.org/plugin/js/prism-matlab.js"></script>
-
-<!-- 使用 Gitter 实现一个 IM 即时通讯聊天室功能 -->
-<script>
-    ((window.gitter = {}).chat = {}).options = {
-        room: 'enjoytoshare/community'
-    };
-</script>
-<script src="https://notebook.js.org/plugin/sidecar.v1.js" async defer></script>
-
-<!-- mouse click -->
-<script src="https://notebook.js.org/plugin/click_heart.js"></script>
-
-<!-- 访问量统计 -->
-<script async src="https://notebook.js.org/plugin/js/busuanzi.pure.mini.js"></script>
-
-<!-- 谷歌分析 -->
-<script src="https://notebook.js.org/plugin/js/ga.min.js"></script>
+      name: '学习足迹',
+      logo: '',
+      repo: 'https://github.com/notes',
+      themeColor: '#007be8', // 主题颜色
 
 
-<!-- 添加页脚 -->
-<script src="https://notebook.js.org/plugin/docsify-footer-enh.min.js"></script>
-
-<!-- 添加网站运行时间统计 -->
-<script language=javascript>
-    function siteTime() {
-        window.setTimeout("siteTime()", 1000);
-        var seconds = 1000;
-        var minutes = seconds * 60;
-        var hours = minutes * 60;
-        var days = hours * 24;
-        var years = days * 365;
-        var today = new Date();
-        var todayYear = today.getFullYear();
-        var todayMonth = today.getMonth() + 1;
-        var todayDate = today.getDate();
-        var todayHour = today.getHours();
-        var todayMinute = today.getMinutes();
-        var todaySecond = today.getSeconds();
-        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
-        year - 作为date对象的年份，为4位年份值
-        month - 0-11之间的整数，做为date对象的月份
-        day - 1-31之间的整数，做为date对象的天数
-        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
-        minutes - 0-59之间的整数，做为date对象的分钟数
-        seconds - 0-59之间的整数，做为date对象的秒数
-        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
-        var t1 = Date.UTC(2023, 12, 10, 00, 00, 00); //北京时间2019-06-21 22:22:22 //计划考研的日子，6月20日毕业典礼结束后，人生需要继续努力，加油，看到这句话的朋友们！
-        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
-        var diff = t2 - t1;
-        var diffYears = Math.floor(diff / years);
-        var diffDays = Math.floor((diff / days) - diffYears * 365);
-        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
-        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
-        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
-        document.getElementById("sitetime").innerHTML = " 本站已安全运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分 " + diffSeconds + " 秒 ";
     }
+  </script>
+  <!-- 引入Docsify库 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
 
-    siteTime();
-</script>
-<!-- 实现离线化 -->
+  <!-- 实现离线化 -->
 <script>
     if (typeof navigator.serviceWorker !== 'undefined') {
         navigator.serviceWorker.register('pwa.js')
