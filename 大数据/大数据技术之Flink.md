@@ -3,7 +3,9 @@
 ## 1.1 Flink是什么
 
 > Flink 官网：https://flink.apache.org/
-
+>
+> Flink 中文官网：<https://flink.apache.org/zh/>
+![flink logo](https://flink.apache.org/img/logo/png/500/flink_squirrel_500.png)
 
 
 ## 1.2 Flink特点
@@ -31,5 +33,7 @@
 
 
 
-# 第二章 Flink 快速上手
                
+# 第二章 Flink快速上手
+
+# 第三章 Flink部署
