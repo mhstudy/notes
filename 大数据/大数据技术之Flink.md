@@ -1,12 +1,12 @@
-# 第一章 Flink概述
-
-## 1.1 Flink是什么
+# 第1章 Flink概述
 
 > Flink 官网：https://flink.apache.org/
 >
 > Flink 中文官网：<https://flink.apache.org/zh/>
 
 ![flink logo](https://flink.apache.org/img/logo/png/500/flink_squirrel_500.png)
+
+## 1.1 Flink是什么
 
 ## 1.2 Flink特点
 
@@ -22,13 +22,13 @@
 |  **状态**   | 有         | 没有                 |
 | **流式SQL** | 有         | 没有                 |
 
-## 1.4 Flink 应用场景
+## 1.4 Flink的应用场景
 
-## 1.5 Flink 分层API
+## 1.5 Flink分层API
 
 ![Flink 分层API](https://nightlies.apache.org/flink/flink-docs-release-1.18/fig/levels_of_abstraction.svg)
 
-# 第二章 Flink 快速上手
+# 第2章 Flink快速上手
 
 ## 2.1 创建项目
 
@@ -38,13 +38,13 @@
 
 ### 2.2.2 流处理
 
-# 第三章 Flink 部署
+# 第3章 Flink部署
 
 ## 3.1 集群角色
 
 ![Flink 集群剖析](https://nightlies.apache.org/flink/flink-docs-release-1.18/fig/processes.svg)
 
-## 3.2  Flink 集群搭建
+## 3.2 Flink集群搭建
 
 ### 3.2.1 集群启动
 
@@ -56,9 +56,9 @@
 
 ### 3.3.2 单作业模式（Per-Job Mode）
 
-### 3.3.3 应用模式 （Application Mode）
+### 3.3.3 应用模式（Application Mode）
 
-## 3.4 Standalone 运行模式（了解）
+## 3.4 Standalone运行模式（了解）
 
 ### 3.4.1 会话模式部署
 
@@ -66,7 +66,7 @@
 
 ### 3.4.3 应用模式部署
 
-## 3.5 YARN 运行模式（重点）
+## 3.5 YARN运行模式（重点）
 
 ### 3.5.1 相关准备和配置
 
@@ -80,7 +80,7 @@
 
 ## 3.7 历史服务器
 
-# 第四章 Flink 运行时架构
+# 第4章 Flink运行时架构
 
 ## 4.1 系统架构
 
@@ -100,13 +100,13 @@
 
 ## 4.3 作业提交流程
 
-### 4.3.1 Standalone 会话模式作业提交流程
+### 4.3.1 Standalone会话模式作业提交流程
 
 ### 4.3.2 逻辑流图/作业图/执行图/物理流图
 
-### 4.3.3 Yarn 应用模式作业提交流程
+### 4.3.3 Yarn应用模式作业提交流程
 
-# 第五章 DataStream API
+# 第5章 DataStream API
 
 ## 5.1 执行环境（Execution Environment）
 
@@ -132,19 +132,55 @@
 
 ### 5.2.7 Flink支持的数据类型
 
-## 5.3 转换算子
+## 5.3 转换算子（Transformation）
 
-### 5.3.1 基本转换算子（map/filter/flatmap）
+### 5.3.1 基本转换算子（map/ filter/ flatMap）
+
+#### 5.3.1.1 映射（map）
+
+#### 5.3.1.2 过滤（filter）
+
+#### 5.3.1.3 扁平映射（flatMap）
 
 ### 5.3.2 聚合算子（Aggregation）
 
+#### 5.3.2.1 按键分区（keyBy）
+
+#### 5.3.2.2 简单聚合（sum/min/max/minBy/maxBy）
+
+#### 5.3.2.3 归约聚合（reduce）
+
 ### 5.3.3 用户自定义函数（UDF）
+
+#### 5.3.3.1 函数类（Function Classes）
+
+#### 5.3.3.2 富函数类（Rich Function Classes）
 
 ### 5.3.4 物理分区算子（Physical Partitioning）
 
+#### 5.3.4.1 随机分区（shuffle）
+
+#### 5.3.4.2 轮询分区（Round-Robin）
+
+#### 5.3.4.3 重缩放分区（rescale）
+
+#### 5.3.4.4 广播（broadcast）
+
+#### 5.3.4.5 全局分区（global）
+
+#### 5.3.4.6 自定义分区（Custom）
+
 ### 5.3.5 分流
 
+#### 5.3.5.1 简单实现
+
+#### 5.3.5.2 使用侧输出流
+
 ### 5.3.6 基本合流操作
+
+#### 5.3.6.1 联合（Union）
+
+#### 5.3.6.2 连接（Connect）
 
 ## 5.4 输出算子（Sink）
 
@@ -158,7 +194,7 @@
 
 ### 5.4.5 自定义Sink输出
 
-# 第六章 Flink 中的时间和窗口
+# 第6章 Flink中的时间和窗口
 
 ## 6.1 窗口（Window）
 
@@ -170,9 +206,23 @@
 
 ### 6.1.4 窗口分配器
 
+#### 6.1.4.1 时间窗口
+
+#### 6.1.4.2 计数窗口
+
 ### 6.1.5 窗口函数
 
+#### 6.1.5.1 增量聚合函数（ReduceFunction / AggregateFunction）
+
+#### 6.1.5.2 全窗口函数（full window functions）
+
+#### 6.1.5.3 增量聚合和全窗口函数的结合使用
+
 ### 6.1.6 其他API
+
+#### 6.1.6.1 触发器（Trigger）
+
+#### 6.1.6.2 移除器（Evictor）
 
 ## 6.2 时间语义
 
@@ -190,9 +240,23 @@
 
 ### 6.3.4 生成水位线
 
+#### 6.3.4.1 生成水位线的总体原则
+
+#### 6.3.4.2 水位线生成策略
+
+#### 6.3.4.3 Flink内置水位线
+
+#### 6.3.4.4 自定义水位线生成器
+
 ### 6.3.5 水位线的传递
 
 ### 6.3.6 迟到数据的处理
+
+#### 6.3.6.1 推迟水印推进
+
+#### 6.3.6.2 设置窗口延迟关闭
+
+#### 6.3.6.3 使用侧流接收迟到的数据
 
 ## 6.4 基于时间的合流——双流联结（Join）
 
@@ -200,21 +264,21 @@
 
 ### 6.4.2 间隔联结（Interval Join）
 
-# 第七章 处理函数
+# 第7章 处理函数
 
 ## 7.1 基本处理函数（ProcessFunction）
 
 ### 7.1.1 处理函数的功能和使用
 
-### 7.1.2 ProcessFuntion解析
+### 7.1.2 ProcessFunction解析
 
 ### 7.1.3 处理函数的分类
 
-## 7.2 按键分区处理函数（KeyedProcessFuntion）
+## 7.2 按键分区处理函数（KeyedProcessFunction）
 
-### 7.2.1 定时器（Timer）和定时服务（TimerServeice）
+### 7.2.1 定时器（Timer）和定时服务（TimerService）
 
-### 7.2.2 KeyedProcessFuntion案例
+### 7.2.2 KeyedProcessFunction案例
 
 ## 7.3 窗口处理函数
 
@@ -222,15 +286,15 @@
 
 ### 7.3.2 ProcessWindowFunction解析
 
-## 7.4 应用案例——TopN
+## 7.4 应用案例——Top N
 
 ### 7.4.1 使用ProcessAllWindowFunction
 
-### 7.4.2 使用KededProcessFunction
+### 7.4.2 使用KeyedProcessFunction
 
 ## 7.5 侧输出流（Side Output）
 
-# 第八章 状态管理
+# 第8章 状态管理
 
 ## 8.1 Flink中的状态
 
@@ -268,7 +332,7 @@
 
 ### 8.4.3 状态后端的配置
 
-# 第九章 容错机制
+# 第9章 容错机制
 
 ## 9.1 检查点（Checkpoint）
 
@@ -278,9 +342,33 @@
 
 ### 9.1.3 检查点算法
 
+#### 9.1.3.1 检查点分界线（Barrier）
+
+#### 9.1.3.2 分布式快照算法（Barrier对齐的精准一次）
+
+#### 9.1.3.3 分布式快照算法（Barrier对齐的至少一次）
+
+#### 9.1.3.4 分布式快照算法（非Barrier对齐的精准一次）
+
 ### 9.1.4 检查点配置
 
+#### 9.1.4.1 启用检查点
+
+#### 9.1.4.2 检查点存储
+
+#### 9.1.4.3 其它高级配置
+
+#### 9.1.4.4 通用增量 checkpoint (changelog)
+
+#### 9.1.4.5 最终检查点
+
 ### 9.1.5 保存点（Savepoint）
+
+#### 9.1.5.1 保存点的用途
+
+#### 9.1.5.2 使用保存点
+
+#### 9.1.5.3 使用保存点切换状态后端
 
 ## 9.2 状态一致性
 
@@ -288,19 +376,19 @@
 
 ### 9.2.2 端到端的状态一致性
 
-## 9.3 端到端精确一次（End-to-End Exactly-Once）
+## 9.3 端到端精确一次（End-To-End Exactly-Once）
 
-### 9.3.1 输入端的保证
+### 9.3.1 输入端保证
 
-### 9.3.2 输出端的保证
+### 9.3.2 输出端保证
 
 ### 9.3.3 Flink和Kafka连接时的精确一次保证
 
-# 第十章 Flink SQL
+# 第10章 Flink SQL
 
 ## 10.1 sql-client准备
 
-### 10.1.1 基于yarn-session 模式
+### 10.1.1 基于yarn-session模式
 
 ### 10.1.2 常用配置
 
@@ -330,11 +418,11 @@
 
 ### 10.5.0 DataGen & Print
 
-### 10.5.1 With 子句
+### 10.5.1 With子句
 
 ### 10.5.2 SELECT & WHERE 子句
 
-### 10.5.3 SELECT & DISTINCT 子句
+### 10.5.3 SELECT DISTINCT 子句
 
 ### 10.5.4 分组聚合
 
@@ -344,9 +432,9 @@
 
 ### 10.5.7 Over 聚合
 
-### 10.5.8 特殊语法——TOPN
+### 10.5.8 特殊语法 —— TOP-N
 
-### 10.5.9 特殊语法——Deduplication去重
+### 10.5.9 特殊语法 —— Deduplication去重
 
 ### 10.5.10 联结（Join）查询
 
@@ -358,7 +446,7 @@
 
 ### 10.5.14 系统函数
 
-### 10.5.15 Module 操作
+### 10.5.15 Module操作
 
 ## 10.6 常用 Connector 读写
 
@@ -368,7 +456,7 @@
 
 ### 10.6.3 JDBC（MySQL）
 
-## 10.7 sql-client 中使用 save-point
+## 10.7 sql-client 中使用 savepoint
 
 ## 10.8 Catalog
 
@@ -383,3 +471,15 @@
 ### 10.9.1 需要引入的依赖
 
 ### 10.9.2 创建表环境
+
+### 10.9.3 创建表
+
+### 10.9.4 表的查询
+
+### 10.9.5 输出表
+
+### 10.9.6 表和流的转换
+
+### 10.9.7 自定义函数（UDF）
+
+
