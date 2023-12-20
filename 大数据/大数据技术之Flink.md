@@ -145,6 +145,7 @@
 ### 5.3.2 聚合算子（Aggregation）
 
 #### 5.3.2.1 按键分区（keyBy）
+![keyBy](https://nightlies.apache.org/flink/flink-docs-release-1.18/fig/keyBy.png)
 
 #### 5.3.2.2 简单聚合（sum/min/max/minBy/maxBy）
 
@@ -181,6 +182,7 @@
 #### 5.3.6.1 联合（Union）
 
 #### 5.3.6.2 连接（Connect）
+![connect](https://nightlies.apache.org/flink/flink-docs-release-1.18/fig/connected-streams.svg)
 
 ## 5.4 输出算子（Sink）
 
