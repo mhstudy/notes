@@ -145,6 +145,7 @@
 ### 5.3.2 聚合算子（Aggregation）
 
 #### 5.3.2.1 按键分区（keyBy）
+
 ![keyBy](https://nightlies.apache.org/flink/flink-docs-release-1.18/fig/keyBy.png)
 
 #### 5.3.2.2 简单聚合（sum/min/max/minBy/maxBy）
@@ -182,6 +183,7 @@
 #### 5.3.6.1 联合（Union）
 
 #### 5.3.6.2 连接（Connect）
+
 ![connect](https://nightlies.apache.org/flink/flink-docs-release-1.18/fig/connected-streams.svg)
 
 ## 5.4 输出算子（Sink）
@@ -203,6 +205,20 @@
 ### 6.1.1 窗口的概念
 
 ### 6.1.2 窗口的分类
+
+![windows](https://nightlies.apache.org/flink/flink-docs-release-1.18/fig/windows.svg)
+
+![window-assigners](https://nightlies.apache.org/flink/flink-docs-release-1.18/fig/window-assigners.svg)
+
+![tumbling-windows](https://nightlies.apache.org/flink/flink-docs-release-1.18/fig/tumbling-windows.svg)
+
+![sliding-windows](https://nightlies.apache.org/flink/flink-docs-release-1.18/fig/sliding-windows.svg)
+
+![session-windows](https://nightlies.apache.org/flink/flink-docs-release-1.18/fig/session-windows.svg)
+
+![non-windowed](https://nightlies.apache.org/flink/flink-docs-release-1.18/fig/non-windowed.svg)
+
+
 
 ### 6.1.3 窗口API概览
 
@@ -230,6 +246,8 @@
 
 ### 6.2.1 Flink中的时间语义
 
+![Flink中的时间语义](https://nightlies.apache.org/flink/flink-docs-release-1.18/fig/event_processing_time.svg)
+
 ### 6.2.2 哪种时间语义更重要
 
 ## 6.3 水位线（Watermark）
@@ -239,6 +257,10 @@
 ### 6.3.2 什么是水位线
 
 ### 6.3.3 水位线和窗口的工作原理
+
+![stream_watermark_in_order](https://nightlies.apache.org/flink/flink-docs-release-1.18/fig/stream_watermark_in_order.svg)
+
+![stream_watermark_out_of_order](https://nightlies.apache.org/flink/flink-docs-release-1.18/fig/stream_watermark_out_of_order.svg)
 
 ### 6.3.4 生成水位线
 
