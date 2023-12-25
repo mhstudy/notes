@@ -12,11 +12,12 @@
 
 ## 开发工具
 
+- [Jetbrains系列常用快捷键](开发工具/Jetbrains系列常用快捷键.md)
+- [Sublime Text使用](开发工具/Sublime Text使用.md)
 - [docsify](开发工具/docsify.md)
-
 
 ## 算法与数据结构
 
 ## 面试有招
 
-- [IT行业求职指导](面试/明哥聊求职/IT行业求职指导.md)
+- [IT行业求职指导](面试有招/明哥聊求职/IT行业求职指导.md)
