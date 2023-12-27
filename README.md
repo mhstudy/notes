@@ -13,7 +13,7 @@
 ## 开发工具
 
 - [Jetbrains系列常用快捷键](开发工具/Jetbrains系列常用快捷键.md)
-- [Sublime Text使用](开发工具/Sublime Text使用.md)
+- [Sublime Text使用](开发工具/SublimeText使用.md)
 - [docsify](开发工具/docsify.md)
 
 ## 算法与数据结构
