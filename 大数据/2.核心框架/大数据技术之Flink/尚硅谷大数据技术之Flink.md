@@ -8,11 +8,72 @@
 
 ## 1.1 Flink是什么
 
+Flink核心目标，是“<font color = "red">数据流上的有状态计算</font>”（Stateful Computations over Data Streams）
+
+具体说明：Apache Flink 是一个<font color = "red">框架</font>和<font color = "red">分布式处理引擎</font>
+，用于在<font color = "red">无界</font>和<font color = "red">有界</font>数据流上进行<font color = "red">
+有状态的计算</font>。
+
+![流处理](https://nightlies.apache.org/flink/flink-docs-release-1.18/fig/flink-application-sources-sinks.png)
+
+有界流和无界流
+
+1) **无界数据流**：
+
+* 有定义流的开始，但是没有定义流的结束：
+* 它们会无休止的产生数据：
+* 无界流的数据必须持续处理，即数据被摄取后需要立即处理。我们不能等到所有数据都到达再处理，因为输入时无限的。
+
+2) **有界数据流**
+
+* 有定义流的开始，也有定义流的结束：
+* 有界流可以在摄取所有数据后再进行计算：
+* 有界流所有数据可以被排序，所以并不需要有序摄取：
+* 有界流处理通常被称为批处理。
+
+有状态的流处理：
+
+把流处理需要的<font color = "red">额外数据保存成一个“状态”</font>，然后针对这条数据进行处理，并且<font color = "red">
+更新状态</font>。这就是所谓的“<font color = "red">有状态的流处理</font>”。
+
+![有状态的流处理]()
+
+* 状态在内存中：优点，速度快；缺点，可靠性差。
+* 状态在分布式系统中：优点，可靠性高；缺点，速度慢
+
+Flink的发展史：
+
 ## 1.2 Flink特点
+
+我们处理数据的目标是：<font color = "red">低延迟、高吞吐、结果的准确性和良好的容错性</font>。
+
+Flink主要特点如下：
+
+* <font color = "red">高吞吐和低延迟</font>。每秒处理百万个事件，毫秒级延迟。
+* <font color = "red">结果的准确性</font>。Flink提供了<font color = "red">事件时间</font>
+  （event-time）和<font color = "red">处理时间</font>（processing-time）语义。对于乱序事件流，事件时间语义仍然能提供一致且准确的结果。
+* <font color = "red">精确一次</font>（exactly-once）的状态一致性保证。
+* <font color = "red">可连接到最常用的外部系统</font>，如Kafka、Hive、JDBC、HDFS、Redis等。
+* <font color = "red">高可用</font>。本身高可用的设置，加上与K8S、YARN和Mesos的紧密集成，再加上从故障种快速恢复和动态扩展任务的能力，Flink能做到以极少的停机时间7×24全天侯运行。
 
 ## 1.3 Flink vs SparkStreaming
 
+<font color = "red">Spark以批处理为根本</font>
+
+* Spark数据模型：Spark采用RDD模型，Spark Streaming 的 DStream 实际上也就是一组组<font color = "red">
+  小批数据RDD的集合</font>
+* Spark运行时的架构：<font color = "red">Spark是批计算</font>，将DAG划分为不同的stage，<font color = "red">
+  一个完成后才可以计算下一个</font>
+
+<font color = "red">Flink以流处理为根本</font>
+
+* Flink的数据模型：Flink 基本数据模型是<font color = "red">数据流</font>，以及事件（Event）序列
+* Flink运行时的架构：Flink是标准的流执行模式，<font color = "red">
+  一个事件在一个节点处理完后可以直接发往下一个节点进行处理</font>
+
 ![有界流和无界流](https://nightlies.apache.org/flink/flink-docs-master/fig/bounded-unbounded.png)
+
+Flink和Spark Streaming 对比
 
 |           | **Flink** | **Streaming**      |
 |:---------:|-----------|--------------------|
@@ -24,13 +85,84 @@
 
 ## 1.4 Flink的应用场景
 
+Flink在国内各个企业中大量使用。一些行业中的典型应用有：
+
+1) 电商和市场营销。
+
+举例：<font color = "red">实时</font>数据<font color = "red">报表</font>、<font color = "red">广告</font>
+投放、<font color = "red">实时推荐</font>
+
+2) 物联网（IOT）
+
+举例：传感器实时数据采集和显示、<font color = "red">实时报警</font>，交通运输业
+
+3) 物流配送和服务业
+
+举例：<font color = "red">订单实时状态更新</font>、通知信息推送
+
+4) 银行和金融业
+
+举例：实时结算和通知推送，<font color = "red">实时检测异常行为</font>
+
 ## 1.5 Flink分层API
 
+* 越顶层越抽象，表达含义越简明，使用越方便
+* 越底层越具体，表达能力越丰富，使用越灵活
+
 ![Flink 分层API](https://nightlies.apache.org/flink/flink-docs-release-1.18/fig/levels_of_abstraction.svg)
+
+有状态流处理：通过底层API（处理函数），对最原始数据加工处理。底层API与DataStream API相集成，可以处理复杂的计算。
+
+<font color = "red">DataStream API（流处理）和DataSet API（批处理）</font>
+封装了底层处理函数，提供了通用的模块，比如转换（transformations，包括map、flagmap等），连接（joins），聚合（aggregations），窗口（windows）操作等。注意：Flink1.12以后，<font color = "red">
+DataStream API已经实现真正的流批一体，所以DataSetAPI已经过时。</font>
+
+<font color = "red">Table API 是以表为中心的声明式编程</font>，其中表可能会动态变化。Table
+API遵循关系模型：表有二维数据结构，类似于关系数据库中的表；同时API提供可比较的操作，例如<font color = "red">
+select、project、join、group-by、aggregate</font>等。我们可以在表与 DataStream/DataSet 之间无缝切换，以允许程序将 Table API 与
+DataStream 以及 DataSet 混合使用。
+
+<font color = "red">SQL</font>这一层在语法与表达能力上与 Table API 类似，但是是<font color = "red">
+以SQL查询表达式的形式表现程序</font>。SQL抽象与 Table API 交互密切，同时SQL查询可以直接在Table API定义的表上执行。
 
 # 第2章 Flink快速上手
 
 ## 2.1 创建项目
+
+在准备好所有的开发环境之后，我们就可以开始开发自己的第一个Flink程序了。首先我们要做的，就是在IDEA中搭建一个Flink项目的骨架。我们会使用Java项目中常见的Maven来进行依赖管理。
+
+**1) 创建工程**
+
+(1) 打开IntelliJ IDEA，创建一个Maven工程。
+
+(2) 将这个Maven工程命名为 FlinkTutorial。
+
+(3) 选定这个Maven工程所在存储路径，并点击Finish，Maven工程即创建成功。
+
+**2) 添加项目依赖**
+
+在项目的pom文件中，添加Flink的依赖，包括flink-java、flink-streaming-java，以及flink-clients（客户端，也可以省略）。
+
+```xml
+<properties>
+    <flink.version>1.17.0</flink.version>
+</properties>
+
+
+  <dependencies>
+    <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-streaming-java</artifactId>
+        <version>${flink.version}</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-clients</artifactId>
+        <version>${flink.version}</version>
+    </dependency>
+  </dependencies>
+```
 
 ## 2.2 WordCount代码编写
 
@@ -217,8 +349,6 @@
 ![session-windows](https://nightlies.apache.org/flink/flink-docs-release-1.18/fig/session-windows.svg)
 
 ![non-windowed](https://nightlies.apache.org/flink/flink-docs-release-1.18/fig/non-windowed.svg)
-
-
 
 ### 6.1.3 窗口API概览
 
