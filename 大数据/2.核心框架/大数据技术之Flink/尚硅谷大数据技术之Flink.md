@@ -36,12 +36,27 @@ Flink核心目标，是“<font color = "red">数据流上的有状态计算</fo
 把流处理需要的<font color = "red">额外数据保存成一个“状态”</font>，然后针对这条数据进行处理，并且<font color = "red">
 更新状态</font>。这就是所谓的“<font color = "red">有状态的流处理</font>”。
 
-![有状态的流处理]()
+![有状态的流处理](https://flink.apache.org/img/function-state.png)
 
 * 状态在内存中：优点，速度快；缺点，可靠性差。
 * 状态在分布式系统中：优点，可靠性高；缺点，速度慢
 
 Flink的发展史：
+
+Flink起源于一个叫作<font color = "red">tratosphere</font>的项目，它是由3所地处柏林的大学和欧洲其他一些大学在2010~
+2014年共同进行的研究项目，由<font color = "red">柏林理工大学的教授沃克尔·马尔科 (Voker Makl) 领衔开发</font>
+。2014年4月，Stratosphere的代码被复制并<font color = "red">捐赠给了Apache软件基金会</font>，Flik就是在此基础上被重新设计出来的。
+
+在德语中，“flink”一词表示“<font color = "red">快速、灵巧</font>”。项目的logo是一只彩色的松鼠。
+
+![apache flink logo]()
+
+* 2014年8月，Flink第一个版本0.6正式发布，与此同时Fink的几位核心开发者创办Data Aitisans公司；
+* 2014年12月，Flink项目完成孵化
+* 2015年4月，Flink发布了里程碑式的重要版本0.9.0;
+* 2019年1月，长期对Flink投入研发的阿里巴巴，以9000万欧元的价格收购了Data Artisans公司;
+* 2019年8月，阿里巴巴将内部版本Blink开源，合并入Flink 1.9.0版本。
+
 
 ## 1.2 Flink特点
 
