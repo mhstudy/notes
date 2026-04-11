@@ -1,8 +1,34 @@
-#IDEA
-# idea ignore
+# IDE
 .idea/
+.vscode/
 *.ipr
 *.iml
 *.iws
+*.swp
+*.swo
+*~
 
-# PyCharm
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Node
+node_modules/
+package-lock.json
+
+# Docsify 本地缓存
+.docsify/
+
+
+# 临时文件
+*.tmp
+*.bak
+*.log

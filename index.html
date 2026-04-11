@@ -1,99 +1,171 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>学习记录</title>
-    <!-- 设置浏览器兼容性 -->
+    <title>大数据学习笔记</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <!-- 网页描述 -->
-    <meta name="description" content="学习笔记">
-    <!-- 设置视口 -->
+    <meta name="description" content="大数据技术全栈学习笔记 - Hadoop/Hive/Spark/Flink/Kafka/HBase">
+    <meta name="keywords" content="大数据,Hadoop,Hive,Spark,Flink,Kafka,HBase,数据仓库">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <!-- 引入样式表 -->
+    <!-- Docsify 主题 -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+    <!-- 代码高亮主题 -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css">
+    <style>
+        :root {
+            --theme-color: #007be8;
+        }
+        /* 侧边栏样式优化 */
+        .sidebar-nav li a {
+            font-size: 14px;
+        }
+        .sidebar-nav li ul li a {
+            font-size: 13px;
+        }
+        /* 重要标记样式 */
+        .markdown-section strong {
+            color: #c7254e;
+        }
+        /* 表格样式 */
+        .markdown-section table {
+            display: table;
+            width: 100%;
+        }
+        /* 代码块样式 */
+        .markdown-section pre {
+            border-radius: 6px;
+        }
+        /* 引用块样式 */
+        .markdown-section blockquote {
+            border-left: 4px solid #007be8;
+            background-color: #f8f8f8;
+            padding: 10px 15px;
+        }
+        /* 面试标记 */
+        .tip {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px 15px;
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
-<!-- 页面内容 -->
-<div id="app"><p>🔫🌹🍄....</p></div>
-<!-- 配置Docsify -->
+<div id="app">⏳ 加载中...</div>
 <script>
     window.$docsify = {
-        name: '学习足迹',
+        name: '📚 大数据学习笔记',
         logo: '',
-        repo: 'https://github.com/notes',
-        themeColor: '#007be8', // 主题颜色
-
-        externalLinkTarget: '_blank', //外链打开方式：_blank表示在新标签页中打开
-
-        markdown: {
-            renderer: {
-                code: function (code, lang, base = null) {
-
-                    if (lang === "dot") {
-                        return (
-                            '<div class="viz">' + Viz(code, "SVG") + '</div>'
-                        );
-                    }
-
-                    var pdf_renderer = function (code, lang, verify) {
-                        function unique_id_generator() {
-                            function rand_gen() {
-                                return Math.floor((Math.random() + 1) * 65536).toString(16).substring(1);
-                            }
-
-                            return rand_gen() + rand_gen() + '-' + rand_gen() + '-' + rand_gen() + '-' + rand_gen() + '-' + rand_gen() + rand_gen() + rand_gen();
-                        }
-
-                        if (lang && !lang.localeCompare('pdf', 'en', {sensitivity: 'base'})) {
-                            if (verify) {
-                                return true;
-                            } else {
-                                var divId = "markdown_code_pdf_container_" + unique_id_generator().toString();
-                                var container_list = new Array();
-                                if (localStorage.getItem('pdf_container_list')) {
-                                    container_list = JSON.parse(localStorage.getItem('pdf_container_list'));
-                                }
-                                container_list.push({"pdf_location": code, "div_id": divId});
-                                localStorage.setItem('pdf_container_list', JSON.stringify(container_list));
-                                return (
-                                    '<div style="margin-top:' + PDF_MARGIN_TOP + '; margin-bottom:' + PDF_MARGIN_BOTTOM + ';" id="' + divId + '">'
-                                    + '<a href="' + code + '"> Link </a> to ' + code +
-                                    '</div>'
-                                );
-                            }
-                        }
-                        return false;
-                    }
-                    if (pdf_renderer(code, lang, true)) {
-                        return pdf_renderer(code, lang, false);
-                    }
-                    //return this.origin.code.apply(this, arguments);
-                    return (base ? base : this.origin.code.apply(this, arguments));
-                }
-            }
+        repo: 'https://github.com/zhouminghan/notes',
+        themeColor: '#007be8',
+        
+        // 侧边栏
+        loadSidebar: true,
+        subMaxLevel: 3,
+        sidebarDisplayLevel: 1,
+        
+        // 封面
+        coverpage: true,
+        onlyCover: false,
+        
+        // 导航栏
+        loadNavbar: true,
+        
+        // 搜索
+        search: {
+            maxAge: 86400000,
+            paths: 'auto',
+            placeholder: '🔍 搜索笔记...',
+            noData: '😔 没有找到结果',
+            depth: 6,
+            hideOtherSidebarContent: false
         },
 
-        // 配置阅读量统计
+        // 分页导航
+        pagination: {
+            previousText: '⬅ 上一篇',
+            nextText: '下一篇 ➡',
+            crossChapter: true,
+            crossChapterText: true
+        },
+
+        // 外链打开方式
+        externalLinkTarget: '_blank',
+
+        // Tab 插件
+        tabs: {
+            persist: true,
+            sync: true,
+            theme: 'classic',
+            tabComments: true,
+            tabHeadings: true
+        },
+
+        // 字数统计
         count: {
             countable: true,
             fontsize: '0.9em',
             color: 'rgb(90,90,90)',
             language: 'chinese'
-        }
+        },
+
+        // 自定义 Markdown 配置
+        markdown: {
+            renderer: {
+                code: function (code, lang, base) {
+                    if (lang === "dot") {
+                        return '<div class="viz">' + Viz(code, "SVG") + '</div>';
+                    }
+                    return (base ? base : this.origin.code.apply(this, arguments));
+                }
+            }
+        },
+
+        // 进度条
+        progress: {
+            position: "top",
+            color: "var(--theme-color,#007be8)",
+            height: "3px"
+        },
+
+        // 404 页面
+        notFoundPage: true
     }
 </script>
-<!-- 引入Docsify库 -->
 
+<!-- Docsify 核心 -->
 <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-<!-- 实现图片放大 -->
-<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
-<!-- 实现复制 -->
+
+<!-- 搜索插件 -->
+<script src="//cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
+
+<!-- 图片放大 -->
+<script src="//cdn.jsdelivr.net/npm/docsify@4/lib/plugins/zoom-image.min.js"></script>
+
+<!-- 复制代码 -->
 <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
 
-<!-- 实现阅读量统计 -->
+<!-- 分页导航 -->
+<script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+
+<!-- 代码高亮 -->
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-java.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-scala.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-sql.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-properties.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-xml-doc.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-yaml.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
+
+<!-- 字数统计 -->
 <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
 
-<!-- 实现离线化 -->
+<!-- 进度条 -->
+<script src="//cdn.jsdelivr.net/npm/docsify-progress@latest/dist/progress.min.js"></script>
+
+<!-- PWA 离线支持 -->
 <script>
     if (typeof navigator.serviceWorker !== 'undefined') {
         navigator.serviceWorker.register('pwa.js')
